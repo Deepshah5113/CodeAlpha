@@ -1,0 +1,93 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <link rel="icon" type="image/png" href="fevicon.ico">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        form {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        input[type="url"] {
+            flex: 1;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .shortened-url {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .shortened-url a {
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the URL Shortener Service</h1>
+        <form action="/shorten" method="POST">
+            <label for="long_url">Enter URL:</label>
+            <input type="url" id="long_url" name="long_url" required>
+            <button type="submit">Shorten URL</button>
+        </form>
+
+        {% if short_url %}
+            <div class="shortened-url">
+                <p>Your shortened URL:</p>
+                <a href="{{ short_url }}">{{ short_url }}</a>
+            </div>
+        {% endif %}
+    </div>
+
+    <script>
+        setTimeout(function() {
+            var shortenedUrl = document.getElementById('shortened-url');
+            if (shortenedUrl) {
+                shortenedUrl.style.display = 'none';
+            }
+        }, 5000);
+    </script>
+
+</body>
+</html>
